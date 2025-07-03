@@ -7,7 +7,7 @@ from torchvision import transforms
 from tqdm import tqdm
 from skimage.metrics import peak_signal_noise_ratio, structural_similarity
 
-from deblur_dataset_with_split import DeblurDataset
+from deblur_dataset import DeblurDataset
 from unet import UNet
 
 dir_img = Path('./data')

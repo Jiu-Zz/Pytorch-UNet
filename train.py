@@ -12,7 +12,7 @@ from tqdm import tqdm
 import wandb
 from evaluate import evaluate
 from unet import UNet
-from deblur_dataset_with_split import DeblurDataset
+from deblur_dataset import DeblurDataset
 
 dir_img = Path('./data')
 dir_checkpoint = Path('./checkpoints/')
