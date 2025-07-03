@@ -102,7 +102,6 @@ if __name__ == '__main__':
         print('Dataset not found or corrupted. ')
 
     # 2.2 创建数据加载器
-    n_val = len(val_set)
     loader_args = dict(batch_size=args.batch_size, num_workers=os.cpu_count(), pin_memory=True)
     val_loader = DataLoader(val_set, shuffle=False, drop_last=True, **loader_args)
 
