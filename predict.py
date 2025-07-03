@@ -8,7 +8,6 @@ from PIL import Image
 from torchvision import transforms
 
 from unet import UNet
-from utils.utils import plot_img_and_mask
 
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
@@ -43,8 +42,6 @@ def get_args():
                         help='模型的存储路径 (default: MODEL.pth)')
     parser.add_argument('--input', '-i', metavar='INPUT', nargs='+', help='输入的文件名', required=True)
     parser.add_argument('--output', '-o', metavar='OUTPUT', nargs='+', help='输出的文件名',)
-    parser.add_argument('--viz', '-v', action='store_true',
-                        help='可视化结果')
     parser.add_argument('--no-save', '-n', action='store_true', help='不保存输出图像')
     parser.add_argument('--bilinear', action='store_true', default=False, help='使用双线性插值')
     
@@ -88,7 +85,3 @@ if __name__ == '__main__':
             out_filename = out_files[i]
             deblurred_img.save(out_filename)
             logging.info(f'Mask saved to {out_filename}')
-
-        if args.viz:
-            logging.info(f'Visualizing results for image {filename}, close to continue...')
-            plot_img_and_mask(img, deblurred_img)
