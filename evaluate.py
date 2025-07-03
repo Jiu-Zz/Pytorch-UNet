@@ -32,12 +32,13 @@ def evaluate(net, dataloader, device, amp):
             for batch in dataloader:
                 blurred_image, sharp_image = batch[0], batch[1]
 
-                # 转移到设备（保持与训练一致的内存格式）
-                blurred_image = blurred_image.to(device=device, dtype=torch.float32)
+                # 转移到设备
+                blurred_image = blurred_image.to(device=device, dtype=torch.float32,
+                                                 memory_format=torch.channels_last)
                 sharp_image = sharp_image.to(device=device, dtype=torch.float32)
 
                 # 模型推理
-                deblurred_image = net(blurred_image)
+                deblurred_image = net(blurred_image) # 重点看这里
 
                 deblurred_image = (deblurred_image * 0.5 + 0.5).clamp(0.0, 1.0)
                 sharp_image = (sharp_image * 0.5 + 0.5).clamp(0.0, 1.0)

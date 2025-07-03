@@ -180,13 +180,14 @@ def get_args():
 
 
 if __name__ == '__main__':
+    # 0. 参数解析
     args = get_args()
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logging.info(f'Using device {device}')
 
-    # n_channels=3 for RGB images
+    # 1. 模型初始化
     model = UNet(n_channels=3, bilinear=args.bilinear)
     model = model.to(memory_format=torch.channels_last)
 
