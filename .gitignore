@@ -1,9 +1,11 @@
 *.pyc
-data/
-__pycache__/
-checkpoints/
 *.pth
 *.jpg
-venv/
+
 .idea/
+__pycache__/
+
+venv/
+data/
+checkpoints/
 wandb/
